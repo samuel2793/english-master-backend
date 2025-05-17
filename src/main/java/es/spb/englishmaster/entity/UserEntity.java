@@ -32,28 +32,13 @@ public class UserEntity implements UserDetails {
     private Integer id;
 
     @Column(nullable = false, unique = true)
-    private String nif;
-
-    @Column
-    private String nombre;
-
-    @Column
-    private String apellidos;
-
-    @Column
-    private String razonSocial;
+    private String username;
 
     @Column(nullable = false, unique = true)
     private String email;
 
     @Column(nullable = false)
     private String password;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    private DireccionEntity direccion;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    private ZonaEntity zona;
 
     @Convert(converter = StringListConverter.class)
     @Enumerated(EnumType.STRING)

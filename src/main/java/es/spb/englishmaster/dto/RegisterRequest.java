@@ -12,16 +12,12 @@ import lombok.Data;
 @Data
 @Builder
 public class RegisterRequest {
-    @NotBlank(message = ErrorMessages.FIELD_CANNOT_BE_BLANK)
-    private String nif;
 
-    private String nombre;
-    private String apellidos;
-    private String razonSocial;
+    private String username;
 
     @AssertTrue(message = ErrorMessages.INVALID_NAME)
     public boolean isNameValid() {
-        return (nombre != null && apellidos != null) || razonSocial != null;
+        return (username != null);
     }
 
     @NotBlank(message = ErrorMessages.FIELD_CANNOT_BE_BLANK)
@@ -30,8 +26,4 @@ public class RegisterRequest {
 
     @NotBlank(message = ErrorMessages.FIELD_CANNOT_BE_BLANK)
     private String password;
-
-    @NotNull(message = ErrorMessages.FIELD_CANNOT_BE_BLANK)
-    @Valid
-    private DireccionDTO direccion;
 }

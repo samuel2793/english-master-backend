@@ -99,10 +99,7 @@ public class AuthService {
         List<RoleType> roleTypeList = new ArrayList<>();
         roleTypeList.add(RoleType.USER);
         UserEntity userEntity = UserEntity.builder()
-                .nif(request.getNif())
-                .nombre(request.getNombre())
-                .apellidos(request.getApellidos())
-                .razonSocial(request.getRazonSocial())
+                .username(request.getUsername())
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .accountStatusType(AccountStatusType.NOT_VERIFIED)
@@ -111,8 +108,6 @@ public class AuthService {
                 .build();
 
         var savedUser = saveCredentials(userEntity);
-
-        // TODO GUARDAR DIRECCION
 
         var accessToken = jwtService.generateAccessToken(userEntity);
         var refreshToken = jwtService.generateRefreshToken(userEntity);
