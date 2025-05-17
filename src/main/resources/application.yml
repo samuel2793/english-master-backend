@@ -1,0 +1,44 @@
+POSTGRES_HOST: localhost
+POSTGRES_DB: english-master
+POSTGRES_USER: english-master
+POSTGRES_PASSWORD: english-master
+
+spring:
+  profiles:
+    active: "dev"
+  jpa:
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: "jdbc:postgresql://${POSTGRES_HOST}:5454/${POSTGRES_DB}"
+    username: "${POSTGRES_USER}"
+    password: "${POSTGRES_PASSWORD}"
+    hikari:
+      pool-name: EnglishMasterPool
+      maximum-pool-size: 10
+      connection-timeout: 30000
+      idle-timeout: 600000
+      max-lifetime: 1800000
+
+
+springdoc:
+  api-docs:
+    path: /api/docs
+  swagger-ui:
+    path: /api/docs/swagger-ui.html
+  default-produces-media-type: application/json
+
+application:
+  name: "english-master"
+  host: http://localhost:8082
+  greenSys:
+    apiKey: "sk_hqkhqzzgpum5xn45xt"
+  security:
+    jwt:
+      secret-key: "IZfpeGlFl5xpPTiFe4BIrfePRlsN6eciiSqaFD3uP3AlABxb6KfxJ2ibRj7gCkSBG8iBevXi2GfLtYhveqiPTQ=="
+      access-token:
+        expiration: 604800000 # 7 dias
+      refresh-token:
+        expiration: 2592000000 # 30 dias
+      password-reset-token:
+        expiration: 3600000 # 1 hora
