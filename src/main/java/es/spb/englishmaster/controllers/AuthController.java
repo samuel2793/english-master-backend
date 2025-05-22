@@ -1,6 +1,6 @@
 package es.spb.englishmaster.controllers;
 
-import es.spb.englishmaster.dto.AuthenticationResponse;
+import es.spb.englishmaster.response.AuthenticationResponse;
 import es.spb.englishmaster.dto.LoginRequest;
 import es.spb.englishmaster.dto.RegisterRequest;
 import es.spb.englishmaster.service.AuthService;

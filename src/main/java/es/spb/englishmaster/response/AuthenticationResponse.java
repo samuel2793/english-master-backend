@@ -1,4 +1,4 @@
-package es.spb.englishmaster.dto;
+package es.spb.englishmaster.response;
 
 import lombok.Builder;
 import lombok.Data;
@@ -7,4 +7,6 @@ import lombok.Data;
 @Builder
 public class AuthenticationResponse {
     private String jwt;
+    private String email;
+    private String username;
 }

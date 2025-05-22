@@ -1,6 +1,6 @@
 package es.spb.englishmaster.service;
 
-import es.spb.englishmaster.dto.AuthenticationResponse;
+import es.spb.englishmaster.response.AuthenticationResponse;
 import es.spb.englishmaster.dto.LoginRequest;
 import es.spb.englishmaster.dto.RegisterRequest;
 import es.spb.englishmaster.entity.PasswordResetEntity;
@@ -157,6 +157,8 @@ public class AuthService {
 
         return AuthenticationResponse.builder()
                 .jwt(jwt)
+                .email(userEntity.getEmail())
+                .username(userEntity.getUsername())
                 .build();
     }
 
