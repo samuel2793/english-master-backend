@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class EnglishLevelDTO {
+public class EnglishLevelRequest {
 
     private Long id;
 

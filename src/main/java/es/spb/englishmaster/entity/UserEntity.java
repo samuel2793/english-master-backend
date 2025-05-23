@@ -51,6 +51,10 @@ public class UserEntity implements UserDetails {
     @Enumerated(EnumType.STRING)
     private AccountStatusType accountStatusType = AccountStatusType.NOT_VERIFIED;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "english_level_id")
+    private EnglishLevelEntity englishLevel;
+
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     @JsonManagedReference
     private List<SessionEntity> sessions;
@@ -93,5 +97,4 @@ public class UserEntity implements UserDetails {
     public String getPassword() {
         return password;
     }
-
 }
