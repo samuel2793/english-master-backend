@@ -55,4 +55,20 @@ public class UserService {
         
         return userRepository.save(user);
     }
+
+    @Transactional
+    public UserEntity setUserEnglishLevelByCode(Integer userId, String levelCode) {
+        UserEntity user = userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado con ID: " + userId));
+
+        if (levelCode == null || levelCode.isEmpty()) {
+            user.setEnglishLevel(null);
+        } else {
+            EnglishLevelEntity level = englishLevelService.findByCode(levelCode)
+                .orElseThrow(() -> new RuntimeException("Nivel de inglés no encontrado con código: " + levelCode));
+            user.setEnglishLevel(level);
+        }
+
+        return userRepository.save(user);
+    }
 }

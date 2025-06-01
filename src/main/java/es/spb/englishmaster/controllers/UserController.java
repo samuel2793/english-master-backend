@@ -44,17 +44,17 @@ public class UserController {
                 .orElse(ResponseEntity.ok().build()); // Devuelve 200 con cuerpo vacío si es null
     }
 
-    @PutMapping("/{userId}/english-level/{levelId}")
+    @PutMapping("/{userId}/english-level/{levelCode}")
     public ResponseEntity<?> setUserEnglishLevel(
             @PathVariable String userId,
-            @PathVariable(required = false) Long levelId) {
+            @PathVariable String levelCode) {
 
         Integer userIdToUse = getUserIdFromPathVariable(userId);
         if (userIdToUse == null) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
 
-        UserEntity updatedUser = userService.setUserEnglishLevel(userIdToUse, levelId);
+        UserEntity updatedUser = userService.setUserEnglishLevelByCode(userIdToUse, levelCode);
         return ResponseEntity.ok(UserResponse.fromEntity(updatedUser));
     }
 

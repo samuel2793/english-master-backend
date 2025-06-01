@@ -27,6 +27,8 @@ public class EnglishLevelService {
         return englishLevelRepository.findById(id);
     }
 
+    public Optional<EnglishLevelEntity> findByCode(String code) { return englishLevelRepository.findByCode(code); }
+
     @Transactional
     public EnglishLevelEntity save(EnglishLevelEntity englishLevel) {
         return englishLevelRepository.save(englishLevel);
