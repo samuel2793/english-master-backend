@@ -9,6 +9,9 @@ import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import jakarta.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "english_levels")
@@ -32,4 +35,22 @@ public class EnglishLevelEntity {
 
     @Column(name = "order_index")
     private Integer orderIndex;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "english_level_categories",
+            joinColumns = @JoinColumn(name = "english_level_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id")
+    )
+    @JsonIgnoreProperties("types")
+    private Set<ExerciseCategoryEntity> availableCategories;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "english_level_exercise_types",
+            joinColumns = @JoinColumn(name = "english_level_id"),
+            inverseJoinColumns = @JoinColumn(name = "exercise_type_id")
+    )
+    @JsonIgnoreProperties("category")
+    private Set<ExerciseTypeEntity> availableTypes;
 }
